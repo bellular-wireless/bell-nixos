@@ -20,7 +20,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       configPath = "/home/bell/.nixos/";
     in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.hellkeeper = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
         ./configuration.nix
