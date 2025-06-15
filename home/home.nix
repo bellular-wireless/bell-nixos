@@ -1,0 +1,35 @@
+{ inputs, config, pkgs, configPath, ... }:
+
+{
+  imports = [
+    inputs.zen-browser.homeModules.twilight
+    (import ./shell/fsh.nix { inherit configPath; })
+    ./git.nix
+  ];
+
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "bell";
+  home.homeDirectory = "/home/bell";
+
+  home.stateVersion = "25.05"; # Please read the comment before changing.
+
+  home.file = {
+    ".config/ghostty/config".source = dotfiles/ghostty/config;
+    ".config/nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${configPath}home/dotfiles/nvim";
+      recursive = true;
+    };
+  };
+
+  programs.home-manager.enable = true;
+
+  programs.zen-browser = {
+    enable = true;
+    policies = {
+      DisableAppUpdate = true;
+      DisableTelemetry = true;
+    };
+  };
+
+}
