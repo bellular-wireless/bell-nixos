@@ -124,6 +124,9 @@
     gcc
     fd
     xclip
+    bottles
+    wowup-cf
+    heroic
   ];
 
   fonts.packages = with pkgs; [
@@ -140,7 +143,16 @@
     vimAlias = true;
   };
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
   programs.ssh.startAgent = true;
+
+  programs.steam.enable = true;
 
   system.stateVersion = "25.05"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
