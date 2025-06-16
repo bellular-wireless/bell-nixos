@@ -23,7 +23,7 @@
       recursive = true;
     };
     ".config/OpenRGB" = {
-      source = home/dotfiles/OpenRGB;
+      source = dotfiles/OpenRGB;
       recursive = true;
     };
   };

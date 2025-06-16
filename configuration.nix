@@ -14,6 +14,12 @@
     enable = true;
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
