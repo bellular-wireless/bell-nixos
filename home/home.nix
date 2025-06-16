@@ -22,6 +22,10 @@
       source = config.lib.file.mkOutOfStoreSymlink "${configPath}home/dotfiles/nvim";
       recursive = true;
     };
+    ".config/OpenRGB" = {
+      source = home/dotfiles/OpenRGB;
+      recursive = true;
+    };
   };
 
   programs.home-manager.enable = true;

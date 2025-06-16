@@ -127,7 +127,11 @@
     bottles
     wowup-cf
     heroic
+    openrgb-with-all-plugins
+    wget
   ];
+
+  services.hardware.openrgb.enable = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.iosevka
