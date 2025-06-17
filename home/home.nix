@@ -19,6 +19,10 @@
   home.username = "bell";
   home.homeDirectory = "/home/bell";
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.file = {
