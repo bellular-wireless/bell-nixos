@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./mounts.nix
+      ./modules/mounts.nix
     ];
 
   services.xserver.videoDrivers = ["nvidia"];
