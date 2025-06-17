@@ -5,6 +5,11 @@
     inputs.zen-browser.homeModules.twilight
     (import ./shell/fsh.nix { inherit configPath; })
     ./git.nix
+    inputs.nixvim.homeModules.nixvim
+    ./nixvim/options.nix
+    ./nixvim/keymaps.nix
+    ./nixvim/autocommands.nix
+    ./nixvim/plugins
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -18,10 +23,10 @@
 
   home.file = {
     ".config/ghostty/config".source = dotfiles/ghostty/config;
-    ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${configPath}home/dotfiles/nvim";
-      recursive = true;
-    };
+    #".config/nvim" = {
+    #  source = config.lib.file.mkOutOfStoreSymlink "${configPath}home/dotfiles/nvim";
+    #  recursive = true;
+    #};
     ".config/OpenRGB" = {
       source = dotfiles/OpenRGB;
       recursive = true;
@@ -41,5 +46,11 @@
   programs.lutris = {
     enable = true;
     steamPackage = pkgs.steam;
+  };
+
+  programs.nixvim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
   };
 }

@@ -135,6 +135,7 @@
     heroic
     openrgb-with-all-plugins
     wget
+    wl-clipboard
   ];
 
   services.hardware.openrgb.enable = true;
@@ -148,10 +149,10 @@
 
   # NeoVim
 
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-  };
+  #programs.neovim = {
+  #  enable = true;
+  #  vimAlias = true;
+  #};
 
   # Bluetooth
   hardware.bluetooth = {
