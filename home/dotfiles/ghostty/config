@@ -41,4 +41,4 @@ font-family = 0xProto Nerd Font
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-theme = citruszest
+theme = rose-pine

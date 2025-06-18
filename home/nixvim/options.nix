@@ -1,17 +1,20 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   programs.nixvim = {
     clipboard.register = "unnamedplus";
     extraPlugins = with pkgs.vimPlugins; [
       citruszest-nvim
+      rose-pine
     ];
-    colorscheme = "citruszest";
+    colorscheme = "rose-pine";
 
     globals = {
       mapleader = " ";
       maplocalleader = " ";
       have_nerd_font = true;
-
     };
 
     opts = {
@@ -38,8 +41,11 @@
 
     diagnostic.settings = {
       severity_sort = true;
-      float = { border = "rounded"; source = "if_many"; };
-      underline = { severity = config.lib.nixvim.mkRaw "vim.diagnostic.severity.ERROR"; };
+      float = {
+        border = "rounded";
+        source = "if_many";
+      };
+      underline = {severity = config.lib.nixvim.mkRaw "vim.diagnostic.severity.ERROR";};
       signs.text = config.lib.nixvim.mkRaw ''
         {
           [vim.diagnostic.severity.ERROR] = '󰅚',
