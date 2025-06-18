@@ -2,7 +2,7 @@
   programs.nixvim = {
     keymaps = [
       {
-        mode = [ "n" ];
+        mode = ["n"];
         key = "<Esc>";
         action = "<cmd>nohlsearch<CR>";
         options = {
@@ -11,7 +11,7 @@
       }
 
       {
-        mode = [ "n" ];
+        mode = ["n"];
         key = "<leader>q";
         action = "vim.diagnostic.setloclist";
         options = {
@@ -20,7 +20,7 @@
       }
 
       {
-        mode = [ "t" ];
+        mode = ["t"];
         key = "<Esc><Esc>";
         action = "<C-\\><C-n>";
         options = {
@@ -29,7 +29,7 @@
       }
 
       {
-        mode = [ "n" ];
+        mode = ["n"];
         key = "<C-h>";
         action = "<C-w><C-h>";
         options = {
@@ -38,7 +38,7 @@
       }
 
       {
-        mode = [ "n" ];
+        mode = ["n"];
         key = "<C-l>";
         action = "<C-w><C-l>";
         options = {
@@ -47,7 +47,7 @@
       }
 
       {
-        mode = [ "n" ];
+        mode = ["n"];
         key = "<C-j>";
         action = "<C-w><C-j>";
         options = {
@@ -56,7 +56,7 @@
       }
 
       {
-        mode = [ "n" ];
+        mode = ["n"];
         key = "<C-k>";
         action = "<C-w><C-k>";
         options = {
@@ -76,7 +76,7 @@
                 }
               )
             end
-          '';
+        '';
         options = {
           desc = "[/] Fuzzily search in current buffer";
         };
@@ -91,9 +91,21 @@
               prompt_title = 'Live Grep in Open Files'
             }
           end
-          '';
+        '';
         options = {
           desc = "[S]earch [/] in Open Files";
+        };
+      }
+      {
+        mode = "";
+        key = "<leader>f";
+        action.__raw = ''
+          function()
+            require('conform').format { async = true, lsp_fallback = true }
+          end
+        '';
+        options = {
+          desc = "[F]ormat buffer";
         };
       }
     ];

@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, configPath, ... }:
+{ inputs, config, pkgs, configPath, lib, ... }:
 
 {
   imports = [
@@ -8,8 +8,8 @@
     inputs.nixvim.homeModules.nixvim
     ./nixvim/options.nix
     ./nixvim/keymaps.nix
-    ./nixvim/autocommands.nix
     ./nixvim/plugins
+    ./nixvim/autocommands.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
