@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  test,
   ...
 }: {
   programs.nixvim = {
@@ -45,7 +46,7 @@
         border = "rounded";
         source = "if_many";
       };
-      underline = {severity = config.lib.nixvim.mkRaw "vim.diagnostic.severity.ERROR";};
+      underline = {severity = config.lib.nixvim.mkRaw "vim.diagnostic.severity.WARN";};
       signs.text = config.lib.nixvim.mkRaw ''
         {
           [vim.diagnostic.severity.ERROR] = '󰅚',

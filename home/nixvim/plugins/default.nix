@@ -7,10 +7,28 @@
     ./autocompletion.nix
     ./conform.nix
     ./mini.nix
+    ./treesitter.nix
   ];
   programs.nixvim.plugins = {
     sleuth.enable = true;
     lz-n.enable = true;
     web-devicons.enable = true;
+    todo-comments = {
+      enable = true;
+      lazyLoad = {
+        enable = true;
+        settings.event = "VimEnter";
+      };
+      settings = {
+        signs = false;
+      };
+    };
+    nvim-autopairs = {
+      enable = true;
+      lazyLoad = {
+        enable = true;
+        settings.event = "InsertEnter";
+      };
+    };
   };
 }

@@ -1,11 +1,10 @@
-{ config, ... }:
-{
+{config, ...}: {
   programs.nixvim = {
     plugins = {
       lazydev = {
         enable = true;
         settings = {
-          library = [ 
+          library = [
             "path = \"\${3rd}/luv/library\""
             "words = \"vim%.uv\""
           ];
@@ -24,7 +23,14 @@
           enable = true;
           settings.Lua.completion.callSnippet = "Replace";
         };
-        nil_ls.enable = true;
+        nil_ls = {
+          enable = true;
+          settings = {
+            nix.flake = {
+              autoEvalInputs = true;
+            };
+          };
+        };
       };
 
       keymaps = [
@@ -55,7 +61,7 @@
         {
           key = "grd";
           action = config.lib.nixvim.mkRaw "require('telescope.builtin').lsp_definitions";
-          options.desc = "LSP: [G]oto [D]efinition";
+          options.desc = "LSP: [G]oto [D]definition";
         }
 
         {

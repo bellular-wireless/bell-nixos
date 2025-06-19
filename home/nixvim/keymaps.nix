@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs.nixvim = {
     keymaps = [
       {
@@ -13,7 +13,7 @@
       {
         mode = ["n"];
         key = "<leader>q";
-        action = "vim.diagnostic.setloclist";
+        action = config.lib.nixvim.mkRaw "require('telescope.builtin').diagnostics";
         options = {
           desc = "Open diagnostic [Q]uickfix list";
         };
