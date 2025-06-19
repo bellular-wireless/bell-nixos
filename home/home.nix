@@ -1,9 +1,12 @@
-{ inputs, config, pkgs, configPath, lib, ... }:
-
 {
+  inputs,
+  pkgs,
+  configPath,
+  ...
+}: {
   imports = [
     inputs.zen-browser.homeModules.twilight
-    (import ./shell/fsh.nix { inherit configPath; })
+    (import ./shell/fsh.nix {inherit configPath;})
     ./git.nix
     inputs.nixvim.homeModules.nixvim
     ./nixvim/options.nix

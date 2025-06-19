@@ -8,7 +8,9 @@
     ./conform.nix
     ./mini.nix
     ./treesitter.nix
+    ./tabout.nix
   ];
+
   programs.nixvim.plugins = {
     sleuth.enable = true;
     lz-n.enable = true;
