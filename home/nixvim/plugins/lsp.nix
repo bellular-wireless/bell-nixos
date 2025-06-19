@@ -1,4 +1,10 @@
-{config, ...}: {
+{
+  config,
+  configPath,
+  host,
+  user,
+  ...
+}: {
   programs.nixvim = {
     plugins = {
       lazydev = {
@@ -23,14 +29,22 @@
           enable = true;
           settings.Lua.completion.callSnippet = "Replace";
         };
-        nil_ls = {
+        nixd = {
           enable = true;
           settings = {
-            nix.flake = {
-              autoEvalInputs = true;
+            cmd = config.lib.nixvim.mkRaw "{ \"nixd\" }";
+            settings = {
+              nixd = {
+                nixpkgs.expr = "import <nixpkgs> { }";
+                options = {
+                  nixos.expr = "(builtins.getFlake \"${configPath}\").nixosConfigurations.${host}.options";
+                  home_manager.expr = "(builtins.getFlake \"${configPath}\").homeConfigurations.${user}.options";
+                };
+              };
             };
           };
         };
+        #nil_ls.enable = true;
       };
 
       keymaps = [

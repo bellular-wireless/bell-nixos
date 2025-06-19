@@ -32,5 +32,6 @@
         settings.event = "InsertEnter";
       };
     };
+    comment.enable = true;
   };
 }

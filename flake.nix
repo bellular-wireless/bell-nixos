@@ -22,32 +22,38 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs: 
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      configPath = "/home/bell/.nixos/";
-    in {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    configPath = "/home/bell/.nixos";
+    user = "bell";
+    host = "hellkeeper";
+  in {
     nixosConfigurations.hellkeeper = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
         ./configuration.nix
       ];
       specialArgs = {
-          pkgs-110bd4d = import inputs.pkgs-110bd4d {
-            inherit system;
-          };
-          inherit configPath;
+        pkgs-110bd4d = import inputs.pkgs-110bd4d {
+          inherit system;
+        };
+        inherit inputs configPath host user;
       };
     };
 
     homeConfigurations = {
       bell = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home/home.nix ];
+        modules = [./home/home.nix];
 
         extraSpecialArgs = {
-          inherit inputs configPath;
+          inherit inputs configPath system host user;
         };
       };
     };

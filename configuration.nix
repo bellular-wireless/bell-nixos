@@ -1,11 +1,19 @@
-{ config, pkgs, system, inputs, pkgs-110bd4d, configPath, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./modules/mounts.nix
-    ];
+  config,
+  pkgs,
+  pkgs-110bd4d,
+  inputs,
+  host,
+  user,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./modules/mounts.nix
+  ];
+
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   services.xserver.videoDrivers = ["nvidia"];
 
@@ -46,7 +54,7 @@
 
   system.nixos.label = "NixOS";
 
-  networking.hostName = "hellkeeper"; # Define your hostname.
+  networking.hostName = "${host}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -93,11 +101,11 @@
     pulse.enable = true;
   };
 
-  users.users.bell = {
+  users.users."${user}" = {
     isNormalUser = true;
     uid = 1000;
-    description = "bell";
-    extraGroups = [ "networkmanager" "wheel" ];
+    description = "${user}";
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
@@ -145,7 +153,7 @@
     nerd-fonts.zed-mono
     nerd-fonts.hack
     nerd-fonts._0xproto
-  ]; 
+  ];
 
   # NeoVim
 
@@ -166,5 +174,5 @@
   programs.steam.enable = true;
 
   system.stateVersion = "25.05"; # Did you read the comment?
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 }
