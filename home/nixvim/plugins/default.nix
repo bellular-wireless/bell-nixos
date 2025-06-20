@@ -33,5 +33,9 @@
       };
     };
     comment.enable = true;
+    nvim-tree = {
+      enable = true;
+      actions.openFile.quitOnOpen = true;
+    };
   };
 }

@@ -20,6 +20,8 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   outputs = {
@@ -37,6 +39,7 @@
     nixosConfigurations.hellkeeper = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
+        inputs.nix-flatpak.nixosModules.nix-flatpak
         ./configuration.nix
       ];
       specialArgs = {

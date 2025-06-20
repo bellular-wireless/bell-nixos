@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let
+  mkCmd = cmd: "<cmd>${cmd}<CR>";
+in {
   programs.nixvim = {
     keymaps = [
       {
@@ -107,6 +109,28 @@
         options = {
           desc = "[F]ormat buffer";
         };
+      }
+      {
+        mode = "n";
+        key = "<leader>r";
+        action = mkCmd "NvimTreeFocus";
+        options.desc = "Toggle File T[r]ee";
+      }
+      {
+        mode = "n";
+        key = "s";
+        action = "<Nop>";
+        options.silent = true;
+      }
+      {
+        mode = "v";
+        key = "<C-Down>";
+        action = ":m '>+1<CR>gv=gv";
+      }
+      {
+        mode = "v";
+        key = "<C-Up>";
+        action = ":m '<-2<CR>gv=gv";
       }
     ];
   };

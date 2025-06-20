@@ -12,6 +12,31 @@
     ./hardware-configuration.nix
     ./modules/mounts.nix
   ];
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    git
+    pkgs-110bd4d.refind
+    nfs-utils
+    ntfs3g
+    discord
+    bitwarden-desktop
+    ghostty
+    neofetch
+    ripgrep
+    gnumake
+    unzip
+    gcc
+    fd
+    xclip
+    wowup-cf
+    heroic
+    openrgb-with-all-plugins
+    wget
+    wl-clipboard
+  ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
@@ -26,6 +51,13 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 14d";
+  };
+
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "com.usebottles.bottles"
+    ];
   };
 
   hardware.nvidia = {
@@ -118,33 +150,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    git
-    pkgs-110bd4d.refind
-    nfs-utils
-    ntfs3g
-    discord
-    bitwarden-desktop
-    ghostty
-    neofetch
-    ripgrep
-    gnumake
-    unzip
-    gcc
-    fd
-    xclip
-    bottles
-    wowup-cf
-    heroic
-    openrgb-with-all-plugins
-    wget
-    wl-clipboard
-  ];
 
   services.hardware.openrgb.enable = true;
 
