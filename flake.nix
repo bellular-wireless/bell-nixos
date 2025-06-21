@@ -22,6 +22,13 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -53,7 +60,11 @@
     homeConfigurations = {
       bell = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [./home/home.nix];
+        modules = [
+          inputs.hyprland.homeManagerModules.default
+          inputs.stylix.homeModules.stylix
+          ./home/home.nix
+        ];
 
         extraSpecialArgs = {
           inherit inputs configPath system host user;

@@ -11,6 +11,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/mounts.nix
+    ./modules/openrgb.nix
   ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -21,7 +22,6 @@
     pkgs-110bd4d.refind
     nfs-utils
     ntfs3g
-    discord
     bitwarden-desktop
     ghostty
     neofetch
@@ -33,9 +33,14 @@
     xclip
     wowup-cf
     heroic
-    openrgb-with-all-plugins
+    #openrgb-with-all-plugins
     wget
     wl-clipboard
+    rose-pine-kvantum
+    rose-pine-hyprcursor
+    rose-pine-cursor
+    kdePackages.dolphin
+    pavucontrol
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
@@ -55,8 +60,10 @@
 
   services.flatpak = {
     enable = true;
+    uninstallUnmanaged = true;
     packages = [
       "com.usebottles.bottles"
+      "com.discordapp.Discord"
     ];
   };
 
@@ -69,17 +76,29 @@
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
-  # Bootloader.
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+  boot = {
+    # Bootloader.
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      grub = {
+        efiSupport = true;
+        device = "nodev";
+        timeoutStyle = "hidden";
+      };
     };
-    grub = {
-      efiSupport = true;
-      device = "nodev";
-      timeoutStyle = "hidden";
-    };
+
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
   };
 
   programs.fish.enable = true;
@@ -110,9 +129,29 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable desktop stuffz
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting \"it is burning.\" -r --time --cmd 'uwsm start -- hyprland.desktop'";
+  #       user = "greeter";
+  #     };
+  #     initial_session = {
+  #       command = "uwsm start -- hyprland.desktop";
+  #       user = "bell";
+  #     };
+  #   };
+  # };
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
+  # services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -151,13 +190,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  services.hardware.openrgb.enable = true;
-
   fonts.packages = with pkgs; [
     nerd-fonts.iosevka
     nerd-fonts.zed-mono
     nerd-fonts.hack
     nerd-fonts._0xproto
+    noto-fonts
   ];
 
   # NeoVim

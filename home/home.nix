@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   configPath,
+  config,
   host,
   user,
   ...
@@ -15,6 +16,7 @@
     ./nixvim/keymaps.nix
     ./nixvim/plugins
     ./nixvim/autocommands.nix
+    ./hyprland.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -36,13 +38,52 @@
     #  source = config.lib.file.mkOutOfStoreSymlink "${configPath}home/dotfiles/nvim";
     #  recursive = true;
     #};
-    ".config/OpenRGB" = {
-      source = dotfiles/OpenRGB;
-      recursive = true;
-    };
+    # ".config/OpenRGB" = {
+    #   source = dotfiles/OpenRGB;
+    #   recursive = true;
+    # };
   };
 
   programs.home-manager.enable = true;
+
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     package = pkgs.rose-pine-gtk-theme;
+  #     name = "rose-pine-gtk-theme";
+  #   };
+  #   cursorTheme = {
+  #     package = pkgs.rose-pine-cursor;
+  #     name = "rose-pine-cursor";
+  #   };
+  # };
+  # dconf.settings = {
+  #   "org/gnome/desktop/interface" = {
+  #     color-scheme = "prefer-dark";
+  #   };
+  # };
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    fonts = {
+      serif = config.stylix.fonts.monospace;
+      sansSerif = config.stylix.fonts.monospace;
+      monospace = {
+        name = "0xProto Nerd Font";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+      sizes = {
+        applications = 10;
+      };
+    };
+  };
+  qt = {
+    enable = true;
+    style.name = "rose-pine-kvantum";
+  };
 
   programs.zen-browser = {
     enable = true;
