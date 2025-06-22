@@ -16,7 +16,7 @@
     ./nixvim/keymaps.nix
     ./nixvim/plugins
     ./nixvim/autocommands.nix
-    ./hyprland.nix
+    ./desktop/hyprland/hyprland.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -65,6 +65,7 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    polarity = "dark";
     fonts = {
       serif = config.stylix.fonts.monospace;
       sansSerif = config.stylix.fonts.monospace;
@@ -79,10 +80,25 @@
         applications = 10;
       };
     };
+    cursor = {
+      name = "rose-pine-cursor";
+      package = pkgs.rose-pine-cursor;
+      size = 28;
+    };
+    targets = {
+      ghostty.enable = false;
+      nixvim.enable = false;
+      fish.enable = false;
+    };
   };
   qt = {
     enable = true;
     style.name = "rose-pine-kvantum";
+  };
+
+  programs.ghostty = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.zen-browser = {

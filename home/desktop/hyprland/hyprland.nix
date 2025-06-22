@@ -36,6 +36,7 @@
       exec-once = [
         "hyprpaper &"
         "waybar &"
+        "openrgb -p main"
         "hyprctl setcursor rose-pine-hyprcursor 28"
         "[workspace 1] $terminal"
       ];
@@ -66,6 +67,8 @@
         "$mod+CTRL, 3, movetoworkspace, 3"
         "$mod+CTRL, 4, movetoworkspace, 4"
         "$mod+CTRL, 5, movetoworkspace, 5"
+
+        "$mod+CTRL+SHIFT, "
       ];
 
       dwindle = {

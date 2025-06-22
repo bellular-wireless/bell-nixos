@@ -8,7 +8,6 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/mounts.nix
     ./modules/openrgb.nix
@@ -39,9 +38,17 @@
     rose-pine-kvantum
     rose-pine-hyprcursor
     rose-pine-cursor
-    kdePackages.dolphin
+    nautilus
     pavucontrol
+    openrgb-with-all-plugins
   ];
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
+  };
+
+  stylix.targets.fish.enable = false;
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
