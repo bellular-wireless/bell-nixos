@@ -20,6 +20,19 @@
     ./desktop/waybar/waybar.nix
   ];
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = ["thunar.desktop"];
+      "image/*" = ["org.xfce.ristretto.desktop"];
+      "image/png" = ["org.xfce.ristretto.desktop"];
+      "image/jpeg" = ["org.xfce.ristretto.desktop"];
+      "x-scheme-handler/https" = ["zen-twilight.desktop"];
+      "x-scheme-handler/http" = ["zen-twilight.desktop"];
+      "x-scheme-handler/mailto" = ["zen-twilight.desktop"];
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   # Home Manager needs a bit of information about you and the paths it should

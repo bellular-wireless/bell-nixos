@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{...}: let
+  wallpaperPath = "/home/bell/Pictures/1748584587849458.jpg";
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -98,13 +100,13 @@
       splash_offset = 2.0;
 
       preload = [
-        "/home/bell/Pictures/1749505551500340.jpg"
+        wallpaperPath
       ];
 
       wallpaper = [
-        "HDMI-A-1,/home/bell/Pictures/1749505551500340.jpg"
-        "DP-2,/home/bell/Pictures/1749505551500340.jpg"
-        "DP-3,/home/bell/Pictures/1749505551500340.jpg"
+        "HDMI-A-1,${wallpaperPath}"
+        "DP-2,${wallpaperPath}"
+        "DP-3,${wallpaperPath}"
       ];
     };
   };

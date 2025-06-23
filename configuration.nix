@@ -12,11 +12,8 @@
     ./modules/mounts.nix
     ./modules/openrgb.nix
   ];
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
     git
     pkgs-110bd4d.refind
     nfs-utils
@@ -44,12 +41,16 @@
     xorg.xrandr
     hyprshot
     gimp
+    xfce.ristretto
   ];
 
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
   };
+
+  services.tumbler.enable = true;
+
   services.gvfs.enable = true;
   xdg.portal = {
     enable = true;
