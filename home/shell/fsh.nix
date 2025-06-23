@@ -11,7 +11,9 @@
     nixr = "sudo nixos-rebuild switch --flake ${configPath}/#${host}";
     hyprlogout = "hyprctl dispatch exit";
   };
-  programs.fish.loginShellInit = "uwsm start select";
+  programs.fish.loginShellInit = ''
+    uwsm start select
+  '';
 
   programs.oh-my-posh = {
     enable = true;

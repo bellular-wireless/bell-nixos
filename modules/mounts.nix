@@ -9,17 +9,17 @@
     };
 
     "/mnt/windows" = {
-      device = "/dev/nvme0n1p2";
+      device = "/dev/disk/by-uuid/8EF08D7FF08D6DF1";
       fsType = "ntfs";
     };
 
     "/mnt/x" = {
-      device = "/dev/sda2";
+      device = "/dev/disk/by-uuid/9242C92442C90E43";
       fsType = "ntfs";
     };
 
     "/mnt/z" = {
-      device = "/dev/sdb2";
+      device = "/dev/disk/by-uuid/B2BCDA40BCD9FEB3";
       fsType = "ntfs";
     };
   };

@@ -1,6 +1,8 @@
-{...}: {
+{pkgs, ...}: {
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
     settings = {
       # decoration = {
       #   shadow_offset = "0 5";
@@ -37,7 +39,8 @@
         "hyprpaper &"
         "waybar &"
         "openrgb -p main"
-        "hyprctl setcursor rose-pine-hyprcursor 28"
+        "xrandr --output DP-3 --primary"
+        "hyprctl setcursor whiteSur-Cursor 20"
         "[workspace 1] $terminal"
       ];
 
@@ -55,6 +58,8 @@
         "$mod, TAB, cyclenext"
         "$mod, space, exec, rofi -show drun"
         "$mod, s, layoutmsg, togglesplit"
+        "$mod, f, togglefloating"
+        "$mod, PRINT, exec, hyprshot -m region -z --clipboard-only"
 
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
@@ -68,7 +73,7 @@
         "$mod+CTRL, 4, movetoworkspace, 4"
         "$mod+CTRL, 5, movetoworkspace, 5"
 
-        "$mod+CTRL+SHIFT, "
+        # "$mod+CTRL+SHIFT, "
       ];
 
       dwindle = {
@@ -102,9 +107,5 @@
         "DP-3,/home/bell/Pictures/1749505551500340.jpg"
       ];
     };
-  };
-
-  programs.waybar = {
-    enable = true;
   };
 }

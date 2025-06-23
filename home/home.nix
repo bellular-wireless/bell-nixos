@@ -17,6 +17,7 @@
     ./nixvim/plugins
     ./nixvim/autocommands.nix
     ./desktop/hyprland/hyprland.nix
+    ./desktop/waybar/waybar.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -34,6 +35,11 @@
 
   home.file = {
     ".config/ghostty/config".source = dotfiles/ghostty/config;
+    ".config/fish/themes" = {
+      source = shell/themes;
+      recursive = true;
+    };
+    ".config/hypr/xdph.conf".source = desktop/hyprland/xdph.conf;
     #".config/nvim" = {
     #  source = config.lib.file.mkOutOfStoreSymlink "${configPath}home/dotfiles/nvim";
     #  recursive = true;
@@ -45,6 +51,8 @@
   };
 
   programs.home-manager.enable = true;
+
+  programs.vesktop.enable = true;
 
   # gtk = {
   #   enable = true;
@@ -81,19 +89,28 @@
       };
     };
     cursor = {
-      name = "rose-pine-cursor";
-      package = pkgs.rose-pine-cursor;
-      size = 28;
+      name = "WhiteSur-cursors";
+      package = pkgs.whitesur-cursors;
+      size = 20;
     };
     targets = {
       ghostty.enable = false;
       nixvim.enable = false;
       fish.enable = false;
+      waybar.enable = false;
+      # nixcord.enable = false;
     };
   };
+
   qt = {
     enable = true;
-    style.name = "rose-pine-kvantum";
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
+  };
+
+  xdg.configFile = {
+    "Kvantum/rose-pine-pine".source = "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-pine";
+    "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=rose-pine-pine";
   };
 
   programs.ghostty = {

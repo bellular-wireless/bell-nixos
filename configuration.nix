@@ -23,7 +23,7 @@
     ntfs3g
     bitwarden-desktop
     ghostty
-    neofetch
+    fastfetch
     ripgrep
     gnumake
     unzip
@@ -32,23 +32,29 @@
     xclip
     wowup-cf
     heroic
-    #openrgb-with-all-plugins
     wget
     wl-clipboard
-    rose-pine-kvantum
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
     rose-pine-hyprcursor
     rose-pine-cursor
-    nautilus
     pavucontrol
     openrgb-with-all-plugins
+    wlr-randr
+    xorg.xrandr
+    hyprshot
+    gimp
   ];
 
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
   };
-
-  stylix.targets.fish.enable = false;
+  services.gvfs.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+  };
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
@@ -70,7 +76,6 @@
     uninstallUnmanaged = true;
     packages = [
       "com.usebottles.bottles"
-      "com.discordapp.Discord"
     ];
   };
 
@@ -109,6 +114,7 @@
   };
 
   programs.fish.enable = true;
+  stylix.targets.fish.enable = false;
 
   system.nixos.label = "NixOS";
 
@@ -140,6 +146,8 @@
   programs.hyprland = {
     enable = true;
     withUWSM = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
   # services.greetd = {
   #   enable = true;
