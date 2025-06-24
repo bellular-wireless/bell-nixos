@@ -52,7 +52,6 @@
       source = shell/themes;
       recursive = true;
     };
-    ".config/hypr/xdph.conf".source = desktop/hyprland/xdph.conf;
     #".config/nvim" = {
     #  source = config.lib.file.mkOutOfStoreSymlink "${configPath}home/dotfiles/nvim";
     #  recursive = true;
@@ -111,7 +110,9 @@
       nixvim.enable = false;
       fish.enable = false;
       waybar.enable = false;
-      # nixcord.enable = false;
+      hyprland.enable = false;
+      hyprlock.enable = false;
+      rofi.enable = false;
     };
   };
 

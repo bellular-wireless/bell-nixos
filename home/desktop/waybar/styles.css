@@ -13,7 +13,7 @@
 }
 
 .main {
-  border-bottom: 2px solid @foam;
+  border-bottom: 1px solid @foam;
 }
 
 .secondary {

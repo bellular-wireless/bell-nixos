@@ -36,7 +36,7 @@ in {
       };
 
       mainBar = {
-        layer = "top";
+        layer = "bottom";
         name = "main";
         position = "top";
         height = 30;
