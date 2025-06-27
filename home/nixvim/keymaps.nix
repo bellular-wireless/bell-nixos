@@ -132,6 +132,12 @@ in {
         key = "<C-Up>";
         action = ":m '<-2<CR>gv=gv";
       }
+      {
+        mode = "n";
+        key = "<leader>c";
+        action = mkCmd "CopilotChat";
+        options.desc = "[C]opilot Chat";
+      }
     ];
   };
 }

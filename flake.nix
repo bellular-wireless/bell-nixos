@@ -1,8 +1,8 @@
 {
   description = "Nixos config flake";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -29,6 +29,8 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    templ.url = "github:a-h/templ";
   };
 
   outputs = {
@@ -53,6 +55,10 @@
       specialArgs = {
         pkgs-110bd4d = import inputs.pkgs-110bd4d {
           inherit system;
+        };
+        pkgs-unstable-small = import inputs.nixpkgs-unstable-small {
+          inherit system;
+          config.allowUnfree = true;
         };
         inherit inputs configPath host user;
       };

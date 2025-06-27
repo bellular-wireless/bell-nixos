@@ -35,6 +35,8 @@
         formatters_by_ft = {
           lua = ["stylua"];
           nix = ["alejandra"];
+          templ = ["templ fmt"];
+          go = ["gofumpt"];
           "*" = ["codespell"];
         };
       };

@@ -11,6 +11,12 @@
     ./hardware-configuration.nix
     ./modules/mounts.nix
     ./modules/openrgb.nix
+    ./modules/ollama.nix
+    ./modules/devtools.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.templ.overlays.default
   ];
 
   environment.systemPackages = with pkgs; [

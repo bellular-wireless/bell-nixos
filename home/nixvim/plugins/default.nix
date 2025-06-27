@@ -37,5 +37,6 @@
       enable = true;
       actions.openFile.quitOnOpen = true;
     };
+    auto-session.enable = true;
   };
 }

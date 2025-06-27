@@ -44,6 +44,11 @@
             };
           };
         };
+        gopls.enable = true;
+        htmx.enable = true;
+        html.enable = true;
+        tailwindcss.enable = true;
+        templ.enable = true;
         #nil_ls.enable = true;
       };
 
