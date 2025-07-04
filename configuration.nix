@@ -81,8 +81,22 @@
   services.flatpak = {
     enable = true;
     uninstallUnmanaged = true;
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "aagl";
+        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
+      }
+    ];
     packages = [
       "com.usebottles.bottles"
+      {
+        appId = "moe.launcher.an-anime-game-launcher";
+        origin = "aagl";
+      }
     ];
   };
 
