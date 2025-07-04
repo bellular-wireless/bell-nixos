@@ -33,6 +33,10 @@
         };
         completion = {
           trigger.prefetch_on_insert = false;
+          ghost_text = {
+            enabled = true;
+            show_without_selection = true;
+          };
         };
         fuzzy.prebuilt_binaries.download = true;
         signature.enabled = true;

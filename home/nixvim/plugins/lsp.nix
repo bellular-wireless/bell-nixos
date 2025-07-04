@@ -49,6 +49,7 @@
         html.enable = true;
         tailwindcss.enable = true;
         templ.enable = true;
+        docker_compose_language_service.enable = true;
         #nil_ls.enable = true;
       };
 

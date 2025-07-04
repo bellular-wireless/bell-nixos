@@ -23,6 +23,7 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      "text/x-log" = ["org.kde.kate.desktop"];
       "inode/directory" = ["thunar.desktop"];
       "image/*" = ["org.xfce.ristretto.desktop"];
       "image/png" = ["org.xfce.ristretto.desktop"];
@@ -30,6 +31,7 @@
       "x-scheme-handler/https" = ["zen-twilight.desktop"];
       "x-scheme-handler/http" = ["zen-twilight.desktop"];
       "x-scheme-handler/mailto" = ["zen-twilight.desktop"];
+      "x-scheme-handler/discord" = ["vesktop.desktop"];
     };
   };
 

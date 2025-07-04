@@ -122,13 +122,14 @@ in {
 
       input-field = {
         monitor = "";
-        size = "200, 50";
+        size = "500, 50";
         outline_thickness = 1;
-        dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+        dots_size = 0.5; # Scale of input-field height, 0.2 - 0.8
         dots_spacing = 0.35; # Scale of dots' absolute size, 0.0 - 1.0
         dots_center = true;
-        outer_color = "rgb(9ccfd8)";
-        inner_color = "rgb(191724)";
+        # outer_color = "rgb(9ccfd8)";
+        outer_color = "rgba(000, 000, 000, 0)";
+        inner_color = "rgba(000, 000, 000, 0)";
         font_color = "rgb(e0def4)";
         font_family = "${font}";
         fade_on_empty = true;

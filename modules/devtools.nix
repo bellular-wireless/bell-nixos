@@ -3,6 +3,5 @@
     go
     air
     templ
-    gofumpt
   ];
 }

@@ -35,8 +35,9 @@
       cursorline = true;
       scrolloff = 10;
       confirm = true;
-      shiftwidth = 2;
-      expandtab = true;
+      shiftwidth = 4;
+      tabstop = 4;
+      #expandtab = true;
     };
 
     diagnostic.settings = {
