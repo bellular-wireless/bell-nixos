@@ -3,7 +3,7 @@
     blink-cmp = {
       enable = true;
       settings = {
-        keymap.preset = "super-tab";
+        keymap.preset = "enter";
         appearance.nerd_font_variant = "mono";
         completion.documentation = {
           auto_show = true;

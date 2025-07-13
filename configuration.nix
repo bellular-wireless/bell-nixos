@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   pkgs-110bd4d,
   inputs,
@@ -13,6 +12,7 @@
     ./modules/openrgb.nix
     ./modules/ollama.nix
     ./modules/devtools.nix
+    ./modules/graphics.nix
   ];
 
   nixpkgs.overlays = [
@@ -50,6 +50,28 @@
     xfce.ristretto
   ];
 
+  services.flatpak = {
+    enable = true;
+    uninstallUnmanaged = true;
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "launcher.moe";
+        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
+      }
+    ];
+    packages = [
+      "com.usebottles.bottles"
+      {
+        appId = "moe.launcher.an-anime-game-launcher";
+        origin = "launcher.moe";
+      }
+    ];
+  };
+
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
@@ -65,48 +87,10 @@
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
-  services.xserver.videoDrivers = ["nvidia"];
-
-  # Graphics
-  hardware.graphics = {
-    enable = true;
-  };
-
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 14d";
-  };
-
-  services.flatpak = {
-    enable = true;
-    uninstallUnmanaged = true;
-    remotes = [
-      {
-        name = "flathub";
-        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      }
-      {
-        name = "aagl";
-        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
-      }
-    ];
-    packages = [
-      "com.usebottles.bottles"
-      {
-        appId = "moe.launcher.an-anime-game-launcher";
-        origin = "aagl";
-      }
-    ];
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   boot = {
@@ -170,26 +154,7 @@
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting \"it is burning.\" -r --time --cmd 'uwsm start -- hyprland.desktop'";
-  #       user = "greeter";
-  #     };
-  #     initial_session = {
-  #       command = "uwsm start -- hyprland.desktop";
-  #       user = "bell";
-  #     };
-  #   };
-  # };
-  # services.displayManager.sddm = {
-  #   enable = true;
-  #   wayland.enable = true;
-  # };
-  # services.desktopManager.plasma6.enable = true;
 
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";

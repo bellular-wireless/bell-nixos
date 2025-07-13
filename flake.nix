@@ -42,39 +42,81 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     configPath = "/home/bell/.nixos";
-    user = "bell";
-    host = "hellkeeper";
+    desktopUser = "bell";
+    desktopHost = "hellkeeper";
+    laptopUser = "belltop";
+    laptopHost = "hellrunner";
   in {
-    nixosConfigurations.hellkeeper = nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = [
-        inputs.nix-flatpak.nixosModules.nix-flatpak
-        inputs.stylix.nixosModules.stylix
-        ./configuration.nix
-      ];
-      specialArgs = {
-        pkgs-110bd4d = import inputs.pkgs-110bd4d {
-          inherit system;
+    nixosConfigurations = {
+      "${desktopHost}" = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.stylix.nixosModules.stylix
+          ./hosts/desktop.nix
+        ];
+        specialArgs = {
+          pkgs-110bd4d = import inputs.pkgs-110bd4d {
+            inherit system;
+          };
+          pkgs-unstable-small = import inputs.nixpkgs-unstable-small {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          host = desktopHost;
+          user = desktopUser;
+          inherit inputs configPath;
         };
-        pkgs-unstable-small = import inputs.nixpkgs-unstable-small {
-          inherit system;
-          config.allowUnfree = true;
+      };
+      "${laptopHost}" = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.stylix.nixosModules.stylix
+          ./hosts/laptop.nix
+        ];
+        specialArgs = {
+          pkgs-110bd4d = import inputs.pkgs-110bd4d {
+            inherit system;
+          };
+          pkgs-unstable-small = import inputs.nixpkgs-unstable-small {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          host = laptopHost;
+          user = laptopUser;
+          inherit inputs configPath;
         };
-        inherit inputs configPath host user;
       };
     };
 
     homeConfigurations = {
-      bell = home-manager.lib.homeManagerConfiguration {
+      "${desktopUser}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           inputs.hyprland.homeManagerModules.default
           inputs.stylix.homeModules.stylix
-          ./home/home.nix
+          ./home/users/desktop.nix
         ];
 
         extraSpecialArgs = {
-          inherit inputs configPath system host user;
+          host = desktopHost;
+          user = desktopUser;
+          inherit inputs configPath system;
+        };
+      };
+      "${laptopUser}" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          inputs.hyprland.homeManagerModules.default
+          inputs.stylix.homeModules.stylix
+          ./home/users/laptop.nix
+        ];
+
+        extraSpecialArgs = {
+          host = laptopHost;
+          user = laptopUser;
+          inherit inputs configPath system;
         };
       };
     };
