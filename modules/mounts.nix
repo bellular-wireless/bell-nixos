@@ -36,14 +36,14 @@
         };
       };
     })
-    (lib.mkIf config.bell.mounts.enableServerMounts {
-      fileSystems = {
-        "/mnt/hellblazer_data" = {
-          device = "192.168.4.58:/mnt/hellblazer_on_the_net/hellblazer_data";
-          fsType = "nfs";
-          options = ["x-systemd.automount" "noauto" "x-systemd.requires=network-online.target"];
-        };
-      };
-    })
+    # (lib.mkIf config.bell.mounts.enableServerMounts {
+    #   fileSystems = {
+    #     "/mnt/hellblazer_data" = {
+    #       device = "192.168.4.58:/mnt/hellblazer_on_the_net/hellblazer_data";
+    #       fsType = "nfs";
+    #       options = ["x-systemd.automount" "noauto" "x-systemd.requires=network-online.target"];
+    #     };
+    #   };
+    # })
   ];
 }

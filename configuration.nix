@@ -44,11 +44,29 @@
     pavucontrol
     openrgb-with-all-plugins
     wlr-randr
-    xorg.xrandr
+    xrandr
     hyprshot
     gimp
-    xfce.ristretto
+    ristretto
+    prismlauncher
+    libimobiledevice
+    speedtest-cli
+    via
+    google-chrome
+    discord
+    networkmanagerapplet
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-sdk-6.0.428"
+    "dotnet-runtime-6.0.36"
+  ];
+
+  services.udev.packages = with pkgs; [
+    via
+  ];
+
+  services.usbmuxd.enable = true;
 
   services.flatpak = {
     enable = true;
@@ -69,12 +87,14 @@
         appId = "moe.launcher.an-anime-game-launcher";
         origin = "launcher.moe";
       }
+      "net.lutris.Lutris"
+      "com.adamcake.Bolt"
     ];
   };
 
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
+    plugins = with pkgs; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
   };
 
   services.tumbler.enable = true;
@@ -127,10 +147,26 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openvpn
+    ];
+    dns = "none";
+  };
+
+  networking.useDHCP = false;
+  networking.dhcpcd.enable = false;
+
+  networking.nameservers = [
+    "1.1.1.1"
+    "1.0.0.1"
+    "8.8.8.8"
+    "8.8.4.4"
+  ];
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "America/Los_Angeles";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

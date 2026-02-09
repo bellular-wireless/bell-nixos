@@ -27,11 +27,11 @@
       servers = {
         lua_ls = {
           enable = true;
-          settings.Lua.completion.callSnippet = "Replace";
+          config.Lua.completion.callSnippet = "Replace";
         };
         nixd = {
           enable = true;
-          settings = {
+          config = {
             cmd = config.lib.nixvim.mkRaw "{ \"nixd\" }";
             settings = {
               nixd = {

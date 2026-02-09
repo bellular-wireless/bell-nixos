@@ -35,7 +35,7 @@
     comment.enable = true;
     nvim-tree = {
       enable = true;
-      actions.openFile.quitOnOpen = true;
+      actions.open_file.quit_on_open = true;
     };
     auto-session.enable = true;
   };

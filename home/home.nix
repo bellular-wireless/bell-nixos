@@ -95,7 +95,7 @@
         name = "0xProto Nerd Font";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
       sizes = {
@@ -115,6 +115,7 @@
       hyprland.enable = false;
       hyprlock.enable = false;
       rofi.enable = false;
+      zen-browser.profileNames = ["default"];
     };
   };
 
@@ -142,10 +143,10 @@
     };
   };
 
-  programs.lutris = {
-    enable = true;
-    steamPackage = pkgs.steam;
-  };
+  # programs.lutris = {
+  #   enable = true;
+  #   steamPackage = pkgs.steam;
+  # };
 
   programs.nixvim = {
     enable = true;

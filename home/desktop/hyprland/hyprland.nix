@@ -65,7 +65,7 @@ in {
         package = null;
         portalPackage = null;
         settings = {
-          "$mod" = "ALT";
+          "$mod" = "SUPER";
           "$terminal" = "ghostty";
           "$browser" = "zen --browser";
           "$discord-client" = "dev.vencord.Vesktop";
@@ -243,7 +243,7 @@ in {
             {
               timeout = 750;
               on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on";
+              on-resume = "hyprctl dispatch dpms on && xrandr --output DP-3 --primary";
             }
           ];
         };

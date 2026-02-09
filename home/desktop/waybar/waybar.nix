@@ -46,7 +46,7 @@ in {
         ];
         modules-left = ["hyprland/workspaces" "memory" "cpu"];
         modules-center = ["hyprland/window"];
-        modules-right = ["wireplumber" "network" "bluetooth" "tray" "clock"];
+        modules-right = ["wireplumber" "bluetooth" "tray" "clock"];
 
         "hyprland/workspaces" = {
           format = "<span size='larger'>{icon}</span>";
