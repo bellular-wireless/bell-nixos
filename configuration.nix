@@ -1,6 +1,7 @@
 {
   pkgs,
   pkgs-110bd4d,
+  pkgs-3562403,
   inputs,
   host,
   user,
@@ -55,6 +56,11 @@
     google-chrome
     discord
     networkmanagerapplet
+    spotify
+    nmap
+    osu-lazer-bin
+    mpv
+    #cura
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -189,6 +195,26 @@
     withUWSM = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  services.displayManager = {
+    enable = true;
+    # cosmic-greeter.enable = true;
+    ly.enable = true;
+    #ly.package = pkgs-3562403.ly;
+    ly.settings = {
+      animation = "doom";
+      # animation_frame_delay = 500;
+      bigclock = "en";
+      bigclock_12hr = true;
+      box_title = "WELCOME TO HELL!!!";
+      doom_fire_height = 5;
+      clear_password = true;
+      brightness_down_key = null;
+      brightness_up_key = null;
+      min_refresh_delta = 40;
+    };
+    environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
   };
 
   services.xserver.xkb = {

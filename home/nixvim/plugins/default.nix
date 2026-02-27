@@ -33,9 +33,13 @@
       };
     };
     comment.enable = true;
-    nvim-tree = {
+    chadtree = {
       enable = true;
-      actions.open_file.quit_on_open = true;
+      settings = {
+        options = {
+          close_on_open = true;
+        };
+      };
     };
     auto-session.enable = true;
   };

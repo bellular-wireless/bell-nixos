@@ -113,7 +113,7 @@ in {
       {
         mode = "n";
         key = "<leader>r";
-        action = mkCmd "NvimTreeFocus";
+        action = mkCmd "CHADopen";
         options.desc = "Toggle File T[r]ee";
       }
       {

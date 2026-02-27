@@ -35,14 +35,6 @@ in {
           "xrandr --output DP-3 --primary"
         ];
       };
-
-      services.hyprpaper.settings = {
-        wallpaper = [
-          "HDMI-A-1,${wallpaperPath}"
-          "DP-2,${wallpaperPath}"
-          "DP-3,${wallpaperPath}"
-        ];
-      };
     })
     (lib.mkIf (!config.bell.hypr.enableDesktopMonitors) {
       wayland.windowManager.hyprland.settings = {
@@ -86,10 +78,11 @@ in {
             "global, 1, 1, default"
           ];
 
-          windowrulev2 = [
-            "float, class:(^org.pulseaudio.pavucontrol$)"
-            "float, class:(^.blueman-manager-wrapped$)"
-            "center, class:(^Rofi$)"
+          windowrule = [
+            "float on, match:class (^org.pulseaudio.pavucontrol$)"
+            "float on, match:class (^.blueman-manager-wrapped$)"
+            "center on, match:class (^Rofi$)"
+            "float on, match:class (^osu!$)"
           ];
 
           exec-once = [
@@ -218,11 +211,16 @@ in {
         settings = {
           ipc = "on";
           splash = false;
-          splash_offset = 2.0;
+          splash_offset = 2;
 
           preload = [
             wallpaperPath
           ];
+
+          wallpaper = {
+            monitor = "";
+            path = wallpaperPath;
+          };
         };
       };
 
