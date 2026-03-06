@@ -60,7 +60,8 @@
     nmap
     osu-lazer-bin
     mpv
-    #cura
+    cura-appimage
+    orca-slicer
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
