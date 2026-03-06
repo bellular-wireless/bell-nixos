@@ -141,6 +141,83 @@
       DisableAppUpdate = true;
       DisableTelemetry = true;
     };
+    profiles.default.search = {
+      force = true;
+      default = "ddg";
+    };
+    profiles.default.settings = {
+      "zen.view.use-single-toolbar" = false;
+    };
+    profiles.default.bookmarks = {
+      force = true;
+      settings = [
+        {
+          name = "TrueNAS";
+          # toolbar = true;
+          url = "http://192.168.0.8:81";
+        }
+        {
+          name = "Deluge";
+          # tooblar = true;
+          url = "http://192.168.0.8:8112";
+        }
+        {
+          name = "SABnzbd";
+          # toolbar = true;
+          url = "http://192.168.0.8:8080";
+        }
+        {
+          name = "Calibre";
+          # toolbar = true;
+          url = "http://192.168.0.8:8090";
+        }
+      ];
+    };
+    profiles.default.pinsForce = true;
+    profiles.default.pins = {
+      "youtube" = {
+        id = "f3ce2f51-412e-463a-b234-f87ebc95f5ce";
+        url = "https://www.youtube.com";
+        isEssential = true;
+        position = 101;
+      };
+      "protonmail" = {
+        id = "15cf1c38-fb1a-4ff8-a12a-0c10ca65ab32";
+        url = "https://mail.proton.me";
+        isEssential = true;
+        position = 102;
+      };
+      "jellyfin" = {
+        id = "5aae067d-c716-4239-832a-823e77b924e9";
+        url = "https://jellyfin.fuck.bargains/";
+        isEssential = true;
+        position = 103;
+      };
+      "jellyseer" = {
+        id = "3f41601c-a388-40b0-bcf0-01ea084a7c9e";
+        url = "https://jellyseerr.fuck.bargains/";
+        isEssential = true;
+        position = 104;
+      };
+      "aws-learning" = {
+        id = "4328136c-85cf-421b-aed9-f0a974a32f8f";
+        url = "https://skillbuilder.aws/";
+        isEssential = false;
+        position = 105;
+      };
+      "nix-search" = {
+        id = "793ffbbc-29e9-476f-bc3b-7120978a1da3";
+        url = "https://search.nixos.org/";
+        isEssential = false;
+        position = 106;
+      };
+      "home-manager-search" = {
+        id = "391bb28d-0cff-47ec-b750-1111753a08f2";
+        url = "https://home-manager-options.extranix.com/";
+        isEssential = false;
+        position = 107;
+      };
+    };
   };
 
   # programs.lutris = {
