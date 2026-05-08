@@ -109,6 +109,7 @@ in {
             "$mod, s, layoutmsg, togglesplit"
             "$mod, f, togglefloating"
             "$mod, PRINT, exec, hyprshot -m region -z --clipboard-only"
+            "$mod, p, pin"
 
             "$mod, 1, workspace, 1"
             "$mod, 2, workspace, 2"

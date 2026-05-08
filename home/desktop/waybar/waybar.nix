@@ -56,6 +56,7 @@ in {
             default = "";
           };
           icon-size = 10;
+          height = 10;
           sort-by-number = true;
           all-outputs = true;
         };

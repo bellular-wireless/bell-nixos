@@ -14,6 +14,7 @@
     ./modules/ollama.nix
     ./modules/devtools.nix
     ./modules/graphics.nix
+    ./modules/keyd.nix
   ];
 
   nixpkgs.overlays = [
@@ -62,6 +63,18 @@
     mpv
     cura-appimage
     orca-slicer
+    protonup-qt
+    protontricks
+    xdotool
+    xprop
+    xxd
+    xwininfo
+    yad
+    impression
+    ryubing
+    xarchiver
+    super-slicer-beta
+    sqlitebrowser
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

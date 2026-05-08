@@ -22,8 +22,14 @@
 
 #workspaces button {
   color: @text;
-  padding-left: 0.35em;
-  padding-right: 0.35em;
+  /* padding-left: 0.35em; */
+  padding-right: 0.66em;
+  padding-top: .2em;
+  margin-top: .3em;
+  margin-bottom: .3em;
+  padding-left: .22em;
+  margin-left: .3em;
+  border-radius: 40px;
 }
 
 #workspaces button.empty {
