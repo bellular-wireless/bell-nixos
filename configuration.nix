@@ -75,6 +75,7 @@
     xarchiver
     super-slicer-beta
     sqlitebrowser
+    protonplus
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -109,6 +110,7 @@
       }
       "net.lutris.Lutris"
       "com.adamcake.Bolt"
+      "dev.bambosh.UnofficialHomestuckCollection"
     ];
   };
 
