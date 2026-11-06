@@ -76,6 +76,8 @@
     super-slicer-beta
     sqlitebrowser
     protonplus
+    solaar
+    bolt-launcher
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -109,8 +111,8 @@
         origin = "launcher.moe";
       }
       "net.lutris.Lutris"
-      "com.adamcake.Bolt"
       "dev.bambosh.UnofficialHomestuckCollection"
+      "org.vinegarhq.Sober"
     ];
   };
 

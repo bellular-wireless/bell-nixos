@@ -42,7 +42,7 @@ in {
         height = 30;
         spacing = 5;
         output = [
-          "DP-3"
+          "DP-4"
         ];
         modules-left = ["hyprland/workspaces" "memory" "cpu"];
         modules-center = ["hyprland/window"];

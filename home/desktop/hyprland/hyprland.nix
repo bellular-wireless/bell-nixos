@@ -24,15 +24,15 @@ in {
         ];
 
         workspace = [
-          "1, monitor:DP-3, default:true, persistent:true"
-          "2, monitor:DP-3, persistent:true"
-          "3, monitor:DP-3, persistent:true"
+          "1, monitor:DP-4, default:true, persistent:true"
+          "2, monitor:DP-4, persistent:true"
+          "3, monitor:DP-4, persistent:true"
           "4, monitor:HDMI-A-1, default:true, persistent:true"
           "5, monitor:DP-2, default:true, persistent:true"
         ];
 
         exec-once = [
-          "xrandr --output DP-3 --primary"
+          "xrandr --output DP-4 --primary"
         ];
       };
     })
@@ -83,6 +83,8 @@ in {
             "float on, match:class (^.blueman-manager-wrapped$)"
             "center on, match:class (^Rofi$)"
             "float on, match:class (^osu!$)"
+            "maximize on, match:class (^Soul's Remnant$)"
+            "maximize on, match:class (^net-runelite-client-RuneLite$)"
           ];
 
           exec-once = [
@@ -108,6 +110,7 @@ in {
             "$mod, space, exec, rofi -show-icons -show drun"
             "$mod, s, layoutmsg, togglesplit"
             "$mod, f, togglefloating"
+            "$mod, r, fullscreen"
             "$mod, PRINT, exec, hyprshot -m region -z --clipboard-only"
             "$mod, p, pin"
 
@@ -242,7 +245,7 @@ in {
             {
               timeout = 750;
               on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on && xrandr --output DP-3 --primary";
+              on-resume = "hyprctl dispatch dpms on && xrandr --output DP-4 --primary";
             }
           ];
         };
